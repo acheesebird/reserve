@@ -1,0 +1,34 @@
+# Example configuration for http://lib.dlufl.edu.cn
+# Update selectors after inspecting the website with the browser devtools.
+base_url: "http://lib.dlufl.edu.cn"
+
+browser: "chromium"  # chromium | firefox | webkit
+
+login:
+  url: "http://lib.dlufl.edu.cn/portal/login"
+  username_selector: "input[name='username']"
+  password_selector: "input[name='password']"
+  submit_selector: "button[type='submit']"
+  logged_in_check_selector: ".user-name, .profile, .navbar .dropdown"
+
+reservation:
+  url: "http://lib.dlufl.edu.cn/seat/reserve"
+  date_input_selector: "input[name='date']"
+  start_time_selector: "input[name='start']"
+  end_time_selector: "input[name='end']"
+  area_selector: "select[name='area']"
+
+  # Option 1: Click a seat using a CSS/XPath template
+  # seat_selector_template: "button[data-seat='{seat}'], [data-seat-id='{seat}']"
+
+  # Option 2: Navigate directly using a seat-specific URL template
+  # seat_page_template: "http://lib.dlufl.edu.cn/seat/{seat}/reserve"
+
+  confirm_selector: "button.confirm, button:has-text('确认'), .modal-footer .btn-primary"
+  result_success_selector: ".alert-success, .result-success, .toast-success"
+  result_failure_selector: ".alert-danger, .result-error, .toast-error"
+
+  # Extra steps before/after filling inputs
+  pre_click_selectors:
+    - ".agree-terms, .accept:visible"
+  post_click_selectors: []
